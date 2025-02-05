@@ -1,0 +1,16 @@
+# Ignorer les fichiers Python 
+__pycache__/
+*.pyc
+*.pyo
+
+# Environnement virtuel
+venv/
+env/
+
+# Fichiers de base de données SQLite
+*.sqlite3
+db.sqlite3
+
+# Fichiers spécifiques au système
+.DS_Store
+Thumbs.db
