@@ -3,44 +3,46 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import MarkSerializer
-from .models import Mark
+from .serializers import CategorySerializer
+from .models import Category
 # Create your views here.
-class MarkCreateView(APIView) :
+class CategoryCreateview(APIView):
     def post(self, request):
-        serializer = MarkSerializer(data=request.data)
+        serializer = CategorySerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
             if user:
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-class MarkListView(APIView):
+class CategoryListView(APIView):
     def get(self, request):
-        mark = Mark.objects.all()
-        serializer = MarkSerializer(mark, many=True)
+        category = Category.objects.all()
+        serializer = CategorySerializer(category, many=True)
         return Response(serializer.data)
-class MarkDetailView(APIView):
+class CategoryDetailView(APIView):
     def get(self,request,pk):
-        mark=Mark.objects.get(idMark=pk)
-        serializer=MarkSerializer(mark)
+        category=Category.objects.get(idCategory=pk)
+        serializer=CategorySerializer(category)
         return Response(serializer.data)
-class MarkUpdateView(APIView):
+class CategoryUpdateview(APIView):
     def put (self,request,pk):
-        mark=Mark.objects.get(idMark=pk)
-        serializer=MarkSerializer(mark,data=request.data)
+        category=Category.objects.get(idCategory=pk)
+        serializer=CategorySerializer(category,data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     def patch(self,request,pk):
-        mark=Mark.objects.get(idMark=pk)
-        serializer=MarkSerializer(mark,data=request.data,partial=True)
+        category=Category.objects.get(idCategory=pk)
+        serializer=CategorySerializer(category,data=request.data,partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-class MarkDeleteView(APIView):
+class CategoryDeleteView(APIView):
     def delete(self,request,pk):
-        mark=Mark.objects.get(idMark=pk)
-        mark.delete()
+        category=Category.objects.get(idCategory=pk)
+        category.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+   
