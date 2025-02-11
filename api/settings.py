@@ -31,17 +31,30 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # Apps intégrées de Django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-      'rest_framework',
-      'user',
-      'client',
-      'marque','categorie'
-      ]
+
+    # Bibliothèques tierces
+    'rest_framework',
+    'rest_framework.authtoken',  # Authentification par token
+    'dj_rest_auth',
+    'dj_rest_auth.registration',  # Seulement si l'enregistrement est utilisé
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    # Applications locales
+    'user',
+    'client',
+    'marque',
+    'categorie',
+    'maladie',
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -51,7 +64,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    # Ajoute cette ligne pour résoudre l'erreur
+    'allauth.account.middleware.AccountMiddleware',
 ]
+
 
 ROOT_URLCONF = 'api.urls'
 AUTH_USER_MODEL = "user.CustomUser"
