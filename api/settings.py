@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
       'rest_framework',
       'user',
-      'client']
+      'client',
+      'marque',]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -52,6 +53,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'api.urls'
+AUTH_USER_MODEL = "user.CustomUser"
 
 TEMPLATES = [
     {
@@ -77,12 +79,12 @@ WSGI_APPLICATION = 'api.wsgi.application'
 
 DATABASES = {
     'default': {  
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pharmacie',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost', 
-        'PORT': '5432',      
+        'ENGINE':'django.db.backends.postgresql',
+        'NAME':'pharmacie',
+        'USER':'postgres',
+        'PASSWORD':'postgres',
+        'HOST':'localhost', 
+        'PORT':'5432',      
     }
 }
 
